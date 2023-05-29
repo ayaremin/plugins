@@ -8,6 +8,8 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.graphics.Bitmap;
 import android.os.Build;
+import android.net.http.SslError;
+import android.webkit.SslErrorHandler;
 import android.view.KeyEvent;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
@@ -57,6 +59,11 @@ public class WebViewClientHostApiImpl implements GeneratedAndroidWebView.WebView
       if (flutterApi != null) {
         flutterApi.onPageStarted(this, view, url, reply -> {});
       }
+    }
+
+    @Override
+    public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError er) {
+      handler.proceed();
     }
 
     @Override
